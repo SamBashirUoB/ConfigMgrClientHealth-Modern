@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ConfigMgr Client Health - sample configuration.
+
+    This mirrors the structure of the original tool's config.xml. All nodes
+    that are optional fall back to defaults when omitted (see the module docs).
+    Set values to match your environment before running Invoke-ClientHealthCheck.
+-->
+<Configuration>
+  <Client>
+    <Version>5.00.9128.1000</Version>
+    <SiteCode>P01</SiteCode>
+    <Domain>contoso.com</Domain>
+    <AutoUpgrade>true</AutoUpgrade>
+    <Share>\\sccm\client</Share>
+    <ClientInstallProperty>
+      <Property>CCMSETUPCMD=/mp:sccm.contoso.com SMSSITECODE=P01</Property>
+    </ClientInstallProperty>
+    <Log>
+      <Enable>true</Enable>
+      <MaxLogSize>5</MaxLogSize>
+      <MaxLogHistory>10</MaxLogHistory>
+    </Log>
+    <CacheSize>
+      <Enable>true</Enable>
+      <Value>10%</Value>
+      <DeleteOrphanedData>true</DeleteOrphanedData>
+    </CacheSize>
+  </Client>
+  <Service>
+    <Name>ccmexec</Name>
+    <StartupType>Automatic</StartupType>
+    <State>Running</State>
+    <Uptime>0</Uptime>
+  </Service>
+  <Service>
+    <Name>wuauserv</Name>
+    <StartupType>Automatic</StartupType>
+    <State>Running</State>
+    <Uptime>0</Uptime>
+  </Service>
+  <Option>
+    <Updates>
+      <Enable>true</Enable>
+      <Share>\\sccm\updates</Share>
+      <Fix>true</Fix>
+    </Updates>
+    <BITSCheck>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+    </BITSCheck>
+    <WMI>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+    </WMI>
+    <DNSCheck>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+    </DNSCheck>
+    <Drivers>
+      <Enable>true</Enable>
+    </Drivers>
+    <PatchLevel>
+      <Enable>true</Enable>
+    </PatchLevel>
+    <OSDiskFreeSpace>10</OSDiskFreeSpace>
+    <HardwareInventory>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+      <Days>7</Days>
+    </HardwareInventory>
+    <SoftwareMetering>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+    </SoftwareMetering>
+    <RefreshComplianceState>
+      <Enable>true</Enable>
+      <Days>7</Days>
+    </RefreshComplianceState>
+    <ClientSettingsCheck>
+      <Enable>true</Enable>
+      <Fix>true</Fix>
+    </ClientSettingsCheck>
+    <CcmSQLCELog>
+      <Enable>true</Enable>
+    </CcmSQLCELog>
+    <PendingReboot>
+      <Enable>true</Enable>
+      <StartRebootApplication>true</StartRebootApplication>
+    </PendingReboot>
+    <MaxRebootDays>
+      <Days>90</Days>
+    </MaxRebootDays>
+    <RebootApplication>
+      <Enable>true</Enable>
+      <Application>C:\Windows\System32\shutdown.exe /r /t 300</Application>
+    </RebootApplication>
+  </Option>
+  <Remediation>
+    <AdminShare>
+      <Fix>true</Fix>
+    </AdminShare>
+    <ClientProvisioningMode>
+      <Fix>true</Fix>
+    </ClientProvisioningMode>
+    <ClientStateMessages>
+      <Fix>true</Fix>
+    </ClientStateMessages>
+    <ClientWUAHandler>
+      <Fix>true</Fix>
+      <Days>7</Days>
+    </ClientWUAHandler>
+    <ClientCertificate>
+      <Fix>true</Fix>
+    </ClientCertificate>
+  </Remediation>
+  <Log>
+    <File>
+      <LocalLogFile>true</LocalLogFile>
+      <LocalFilesPath>C:\ClientHealth</LocalFilesPath>
+      <Enable>false</Enable>
+      <Share>\\sccm\clienthealth</Share>
+      <Level>Full</Level>
+      <MaxLogHistory>10</MaxLogHistory>
+    </File>
+    <Time>
+      <Format>ClientLocal</Format>
+    </Time>
+    <SQL>
+      <Enable>false</Enable>
+      <Server>sql.contoso.com</Server>
+      <Database>ClientHealth</Database>
+    </SQL>
+  </Log>
+</Configuration>

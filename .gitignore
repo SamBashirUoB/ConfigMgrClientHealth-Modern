@@ -1,0 +1,15 @@
+# Ignore PowerShell artifacts
+*.log
+*.ps1xml.bak
+
+# Ignore local config (contains environment-specific values)
+config.local.xml
+
+# Ignore test output
+tests/TestResults.xml
+tests/coverage.xml
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
